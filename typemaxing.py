@@ -8,26 +8,25 @@ from bs4 import BeautifulSoup
 import pyautogui
 import time
 
-# Setup Chrome
+
 options = Options()
 options.add_argument("--start-maximized")
 driver = webdriver.Chrome(options=options)
 
-# Open Human Benchmark Typing Test
+
 driver.get("https://humanbenchmark.com/tests/typing ")
 
+
 try:
-    # Wait until the typing area is present
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, "letters"))
     )
 
-    # Get page source after content loads
-    time.sleep(3)  # Small buffer for rendering
+   
+    time.sleep(3) 
     src = driver.page_source
     soup = BeautifulSoup(src, "html.parser")
 
-    # Target only the relevant spans inside the typing container
     container = soup.find("div", class_="letters")
     if not container:
         print("Typing container not found!")
@@ -42,13 +41,13 @@ try:
 
     print("Typing:", text)
     
-    # Give time for focus
+
     time.sleep(0.5)
 
-    # Type using pyautogui
-    pyautogui.typewrite(text, interval=0.09)
+    
+    pyautogui.typewrite(text, interval=0)
 
-    time.sleep(5)  # Keep browser open to see result
+    time.sleep(5)  
 
 except Exception as e:
     print("An error occurred:")
