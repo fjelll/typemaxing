@@ -23,7 +23,7 @@ try:
     )
 
     # Get page source after content loads
-    time.sleep(1.5)  # Small buffer for rendering
+    time.sleep(3)  # Small buffer for rendering
     src = driver.page_source
     soup = BeautifulSoup(src, "html.parser")
 
@@ -46,9 +46,9 @@ try:
     time.sleep(0.5)
 
     # Type using pyautogui
-    pyautogui.typewrite(text, interval=0.01)
+    pyautogui.typewrite(text, interval=0.09)
 
     time.sleep(5)  # Keep browser open to see result
 
 except Exception as e:
-    print("An error occurred:", e)
+    print("An error occurred:")
